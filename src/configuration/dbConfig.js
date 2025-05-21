@@ -1,12 +1,16 @@
 const mongoose= require("mongoose");
 
-const connectedToMongoDB = async () => {
-    try{
-        await mongoose.connect("mongodb://localhost:27017/crud_db");
-        console.log("conncetd to MongoDB");
-    }catch(error){
-        console.error(`MongoDB connection error:${error}`);
-    }
-}
+mongoose.connect("mongodb://localhost:27017/crud_db",{
+});
 
-module.exports = {mongoose , connectedToMongoDB};
+mongoose.connection.on("Conncted",()=>{
+         console.log("conncetd to MongoDB");
+});
+
+mongoose.connection.on("Error",(err)=>{
+         console.error(`MongoDb connection error ${err}`);
+});
+       
+    
+
+module.exports = mongoose;
