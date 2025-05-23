@@ -10,6 +10,15 @@ class UserService{
       return await User.find();
     }
 
+    async getUserById(userId){
+      return await User.findById(userId);
+    }
+
+    async updateUser(userId,updatedData){
+     return await User.findByIdAndUpdate(userId,updatedData,{
+        new :true
+      })
+    }
     
 }
 
